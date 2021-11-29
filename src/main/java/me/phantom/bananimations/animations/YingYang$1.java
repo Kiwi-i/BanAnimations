@@ -31,6 +31,7 @@ class YinYang$1 extends BukkitRunnable {
    final String reason;
    final YinYang animation;
 
+   // OH GOD ITS ALL DECOMPILED JARGON
    YinYang$1(YinYang animation, RepeatingTaskHelper var2, List<Item> var3, ArmorStand[] var4, World var5, Location var6, CommandSender var7, Player var8, AnimationType var9, String var10) {
       this.animation = animation;
       this.taskHelper = var2;
