@@ -4,3 +4,5 @@
 
 - For help using this plugin visit the wiki: https://github.com/Matt4499/BanAnimations/wiki
 
+**Spigot Resource:** https://www.spigotmc.org/resources/bananimations-patched.71234/
+
