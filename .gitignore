@@ -100,10 +100,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Repo specific files
-.github/
-
-# Gradle
 .gradle
 build/
 
