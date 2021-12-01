@@ -18,7 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-class GwenAnimation$1 extends BukkitRunnable {
+class GwenAnimation2 extends BukkitRunnable {
    double radPerSec;
    final RepeatingTaskHelper taskHelper;
    final List<Guardian> guardians;
@@ -32,7 +32,7 @@ class GwenAnimation$1 extends BukkitRunnable {
    final Location targetLocation;
    final GwenAnimation animation;
 
-   GwenAnimation$1(GwenAnimation animation, RepeatingTaskHelper taskHelper, List<Guardian> guardians,
+   GwenAnimation2(GwenAnimation animation, RepeatingTaskHelper taskHelper, List<Guardian> guardians,
          CommandSender sender, Player target, AnimationType aniType, String reason, ArmorStand stand, Location location,
          World world, Location targetLocation) {
       this.animation = animation;

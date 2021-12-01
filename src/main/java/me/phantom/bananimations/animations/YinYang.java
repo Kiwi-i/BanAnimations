@@ -45,7 +45,7 @@ public void playAnimation(CommandSender sender, Player target, AnimationType typ
       List<Item> items = new ArrayList<Item>();
       RepeatingTaskHelper taskHelper = new RepeatingTaskHelper();
       //taskHelper.setTaskID(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this.getPlugin(), new YinYang$1(this, taskHelper, items, stands, world, targetLocation, sender, target, type, reason), 0L, 1L));
-      Task.scheduleSyncRepeatingTask(new YinYang$1(this, taskHelper, items, stands, world, targetLocation, sender, target, type, reason), 10L, 1L);
+      Task.scheduleSyncRepeatingTask(new YinYang2(this, taskHelper, items, stands, world, targetLocation, sender, target, type, reason), 10L, 1L);
    }
 
    private Location[] getSpawnLocations(Location location) {

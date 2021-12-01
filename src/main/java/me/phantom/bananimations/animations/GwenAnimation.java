@@ -45,7 +45,7 @@ public class GwenAnimation extends Animation {
       }
 
       RepeatingTaskHelper taskHelper = new RepeatingTaskHelper();
-      Task.scheduleSyncRepeatingTask(new GwenAnimation$1(this, taskHelper, guardians, sender, target, type, reason,
+      Task.scheduleSyncRepeatingTask(new GwenAnimation2(this, taskHelper, guardians, sender, target, type, reason,
             stand, guardianCenter, world, targetLocation), 10L, 1L);
 
    }

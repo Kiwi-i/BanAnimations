@@ -51,11 +51,8 @@ public class PigAnimation extends Animation {
          this.playSound(target, sender, Sounds.ENTITY_PIG_DEATH.get(), 0.5F, 1.0F);
       }, 1L, TimeUnit.SECONDS);
       Task.runTaskLater(() -> {
-         Item[] var6 = items;
-         int var7 = items.length;
-
-         for(int var8 = 0; var8 < var7; ++var8) {
-            Item item = var6[var8];
+         for(int itemtarget = 0; itemtarget < items.length; ++itemtarget) {
+            Item item = items[itemtarget];
             item.remove();
          }
 

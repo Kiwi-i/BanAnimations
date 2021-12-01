@@ -34,10 +34,10 @@ public class SwordFallAnimation extends Animation {
       super.freeze(target);
       List<ArmorStand> stands = this.spawnStands(this.getRandomLocations(target.getLocation().add(0.0D, 10.0D, 0.0D)), target.getLocation());
       Task.runTaskLater(() -> {
-         Iterator<ArmorStand> var6 = stands.iterator();
+         Iterator<ArmorStand> standList = stands.iterator();
 
-         while(var6.hasNext()) {
-            ArmorStand stand = (ArmorStand)var6.next();
+         while(standList.hasNext()) {
+            ArmorStand stand = standList.next();
             stand.remove();
          }
 
@@ -64,8 +64,8 @@ public class SwordFallAnimation extends Animation {
 
          taskHelper.increment();
          if (stands.size() > 4) {
-            ((ArmorStand)stands.get(0)).getWorld().playSound(((ArmorStand)stands.get(0)).getLocation(), Sounds.ENTITY_PLAYER_HURT.get(), 0.3F, 1.0F);
-            ((ArmorStand)stands.get(0)).remove();
+            stands.get(0).getWorld().playSound(stands.get(0).getLocation(), Sounds.ENTITY_PLAYER_HURT.get(), 0.3F, 1.0F);
+            stands.get(0).remove();
             stands.remove(0);
             if (taskHelper.getCounter() % 4 == 0) {
                world.playEffect(new Location(world, x + this.getRandom().nextDouble() - 0.5D, y, z + this.getRandom().nextDouble() - 0.5D), Effect.STEP_SOUND, 152);

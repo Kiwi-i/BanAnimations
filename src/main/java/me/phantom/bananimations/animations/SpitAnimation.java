@@ -22,11 +22,10 @@ public class SpitAnimation extends Animation {
       super.freeze(target);
       ArrayList<Llama> llamas = new ArrayList<Llama>();
       Location targetLocation = target.getLocation();
-      Location[] var7 = this.getLocationsCross(targetLocation);
-      int var8 = var7.length;
+      Location[] locations = this.getLocationsCross(targetLocation);
 
-      for (int var9 = 0; var9 < var8; ++var9) {
-         Location location = var7[var9];
+      for (int locindex = 0; locindex < locations.length; ++locindex) {
+         Location location = locations[locindex];
          Llama llama = (Llama) target.getWorld().spawnEntity(location, EntityType.LLAMA);
          llama.setAdult();
          llama.setAI(false);
@@ -41,14 +40,14 @@ public class SpitAnimation extends Animation {
          World world = targetLocation.getWorld();
 
          for (int i = 0; i < 4; ++i) {
-            Location location = target.getEyeLocation().clone().subtract(((Llama) llamas.get(i)).getEyeLocation());
+            Location location = target.getEyeLocation().clone().subtract(llamas.get(i).getEyeLocation());
             if (location.getX() != 0.0D) {
                location.subtract(0.5D * location.getX(), 0.0D, 0.0D);
             } else {
                location.subtract(0.0D, 0.0D, 0.5D * location.getZ());
             }
 
-            location.add(((Llama) llamas.get(i)).getEyeLocation());
+            location.add(llamas.get(i).getEyeLocation());
             world.spawnEntity(location, EntityType.LLAMA_SPIT);
          }
 

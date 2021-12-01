@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-class YinYang$1 extends BukkitRunnable {
+class YinYang2 extends BukkitRunnable {
    double radPerSec;
    double yDif;
    boolean up;
@@ -31,18 +31,17 @@ class YinYang$1 extends BukkitRunnable {
    final String reason;
    final YinYang animation;
 
-   // OH GOD ITS ALL DECOMPILED JARGON
-   YinYang$1(YinYang animation, RepeatingTaskHelper var2, List<Item> var3, ArmorStand[] var4, World var5, Location var6, CommandSender var7, Player var8, AnimationType var9, String var10) {
+   YinYang2(YinYang animation, RepeatingTaskHelper taskHelper, List<Item> items, ArmorStand[] stands, World world, Location location, CommandSender sender, Player player, AnimationType type, String reason) {
       this.animation = animation;
-      this.taskHelper = var2;
-      this.items = var3;
-      this.stands = var4;
-      this.world = var5;
-      this.targetLocation = var6;
-      this.sender = var7;
-      this.target = var8;
-      this.type = var9;
-      this.reason = var10;
+      this.taskHelper = taskHelper;
+      this.items = items;
+      this.stands = stands;
+      this.world = world;
+      this.targetLocation = location;
+      this.sender = sender;
+      this.target = player;
+      this.type = type;
+      this.reason = reason;
       this.radPerSec = Math.toRadians(10);
       this.yDif = 0.0D;
       this.up = true;
@@ -56,23 +55,21 @@ class YinYang$1 extends BukkitRunnable {
          YinYang.finish(this.animation, this.sender, this.target, this.type, this.reason);
     	  }
          if(this.taskHelper.getCounter() == 160) {
-         this.items.forEach((itemx) -> {
-            itemx.remove();
+         this.items.forEach((item) -> {
+            item.remove();
          });
-         ArmorStand[] var1 = this.stands;
-         int var2 = var1.length;
+         ArmorStand[] stands = this.stands;
 
-         for(var3 = 0; var3 < var2; ++var3) {
-            ArmorStand stand = var1[var3];
+         for(int target = 0; target<stands.length;target++) {
+            ArmorStand stand = stands[target];
             stand.remove();
          }
       } else {
          int count = 0;
-         ArmorStand[] var8 = this.stands;
-         var3 = var8.length;
+         ArmorStand[] stands = this.stands;
 
-         for(int var10 = 0; var10 < var3; ++var10) {
-            ArmorStand stand = var8[var10];
+         for(int target = 0; target < stands.length; ++target) {
+            ArmorStand stand = stands[target];
             Location nextPoint = Utils.getLocationAroundCircle(this.targetLocation, YinYang.getRadius(this.animation), this.radPerSec * (float)this.taskHelper.getCounter() + (float)count);
             if (count == 0) {
                stand.teleport(new Location(this.world, nextPoint.getX(), nextPoint.getY() + this.yDif, nextPoint.getZ()));
@@ -83,7 +80,7 @@ class YinYang$1 extends BukkitRunnable {
             count += 3;
          }
 
-         this.radPerSec = this.radPerSec;
+         this.radPerSec = this.radPerSec + Math.toRadians(0.05);
          if (this.yDif >= 0.8D) {
             this.up = false;
          } else if (this.yDif <= -0.8D) {
@@ -110,7 +107,7 @@ class YinYang$1 extends BukkitRunnable {
          item.setVelocity(new Vector(this.animation.getRandom().nextDouble() * 0.2D - 0.1D, 0.8D, this.animation.getRandom().nextDouble() * 0.2D - 0.1D));
          this.items.add(item);
          if (this.items.size() % 40 == 0) {
-            ((Item)this.items.get(0)).remove();
+            this.items.get(0).remove();
             this.items.remove(0);
          }
          this.taskHelper.increment();
