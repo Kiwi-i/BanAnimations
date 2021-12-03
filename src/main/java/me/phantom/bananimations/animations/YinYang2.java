@@ -8,6 +8,7 @@ import me.phantom.bananimations.utils.Utils;
 
 import org.bukkit.Effect;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
@@ -18,6 +19,8 @@ import org.bukkit.util.Vector;
 
 class YinYang2 extends BukkitRunnable {
     double radPerSec;
+    double radiusOffset;
+    double radiusModifier;
     double yDif;
     boolean up;
     final RepeatingTaskHelper taskHelper;
@@ -45,12 +48,14 @@ class YinYang2 extends BukkitRunnable {
         this.radPerSec = Math.toRadians(10);
         this.yDif = 0.0D;
         this.up = true;
+        this.radiusModifier = YinYang.getRadius(this.animation)/80;
     }
 
     public void run() {
         int var3;
-        if(this.taskHelper.getCounter() == 150) {
-            this.world.playEffect(this.targetLocation, Effect.valueOf("SMOKE"), 1);
+        if(this.taskHelper.getCounter() == 159) {
+            this.world.spawnParticle(Particle.SMOKE_NORMAL, this.targetLocation.getX(), this.targetLocation.getY(), this.targetLocation.getZ(), 500);
+            this.world.spawnParticle(Particle.FLAME, this.targetLocation.getX(), this.targetLocation.getY() + 1D, this.targetLocation.getZ(), 100);
             this.world.playSound(this.targetLocation, Sounds.ENTITY_GENERIC_EXPLODE.get(), 1.0F, 1.0F);
             YinYang.finish(this.animation, this.sender, this.target, this.type, this.reason);
         }
@@ -67,10 +72,12 @@ class YinYang2 extends BukkitRunnable {
         } else {
             int count = 0;
             ArmorStand[] stands = this.stands;
-
+            if(this.taskHelper.getCounter() >= 80) {
+                this.radiusOffset = this.radiusOffset + this.radiusModifier;
+            }
             for(int target = 0; target < stands.length; ++target) {
                 ArmorStand stand = stands[target];
-                Location nextPoint = Utils.getLocationAroundCircle(this.targetLocation, YinYang.getRadius(this.animation), this.radPerSec * (float)this.taskHelper.getCounter() + (float)count);
+                Location nextPoint = Utils.getLocationAroundCircle(this.targetLocation, YinYang.getRadius(this.animation)-this.radiusOffset, this.radPerSec * (float)this.taskHelper.getCounter() + (float)count);
                 if (count == 0) {
                     stand.teleport(new Location(this.world, nextPoint.getX(), nextPoint.getY() + this.yDif, nextPoint.getZ()));
                 } else {

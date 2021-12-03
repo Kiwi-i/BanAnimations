@@ -61,7 +61,7 @@ class GwenAnimation2 extends BukkitRunnable {
       } else if (this.taskHelper.getCounter() >= 77) {
          if (this.taskHelper.getCounter() == 77) {
             GwenAnimation.finish(this.animation, this.sender, this.target, this.aniType, this.reason);
-            this.world.spawnParticle(Particle.EXPLOSION_HUGE, this.targetLocation.getX(), this.targetLocation.getY() + 1D, this.targetLocation.getZ(), 1);
+            this.world.spawnParticle(Particle.EXPLOSION_HUGE, this.targetLocation.getX(), this.targetLocation.getY() + 1D, this.targetLocation.getZ(), 20);
             this.world.playSound(this.targetLocation, Sounds.ENTITY_GENERIC_EXPLODE.get(), 1.0F, 1.0F);
          }
 
